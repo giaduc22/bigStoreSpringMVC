@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -13,7 +16,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Big Store</a>
+			<a class="navbar-brand" href="${contextPath}/index.html">Big Store</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
@@ -24,9 +27,9 @@
 				<li><a href="#">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav pull-right">
-				<li><a href="#"><span
+				<li><a href="${contextPath}/cart.html"><span
 						class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+				<li><a href="${contextPath}/login.html"><span class="glyphicon glyphicon-user"></span>
 						Login</a></li>
 			</ul>
 		</div>

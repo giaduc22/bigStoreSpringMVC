@@ -4,7 +4,7 @@
 
 	<div class="col-sm-4 col-lg-4 col-md-4">
 		<div class="thumbnail">
-			<img src="http://placehold.it/320x150" alt="">
+			<img src="https://goo.gl/nLXEgY" alt="">
 			<div class="caption">
 				<h4 class="pull-right">$24.99</h4>
 				<h4>
@@ -31,7 +31,7 @@
 
 	<div class="col-sm-4 col-lg-4 col-md-4">
 		<div class="thumbnail">
-			<img src="http://placehold.it/320x150" alt="">
+			<img src="https://goo.gl/S5dKb3" alt="">
 			<div class="caption">
 				<h4 class="pull-right">$64.99</h4>
 				<h4>
@@ -55,7 +55,7 @@
 
 	<div class="col-sm-4 col-lg-4 col-md-4">
 		<div class="thumbnail">
-			<img src="http://placehold.it/320x150" alt="">
+			<img src="https://goo.gl/8Axcnj" alt="">
 			<div class="caption">
 				<h4 class="pull-right">$74.99</h4>
 				<h4>
