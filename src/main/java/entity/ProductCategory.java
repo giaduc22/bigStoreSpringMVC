@@ -11,6 +11,17 @@ public class ProductCategory {
 	private int id;
 	private String name;
 	
+	
+	
+	public ProductCategory() {
+		super();
+	}
+	
+	public ProductCategory(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}

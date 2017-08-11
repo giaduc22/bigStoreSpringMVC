@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -18,7 +18,6 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 
-
 <!-- Custom CSS -->
 <link href='<c:url value="resources/css/style.css" />' rel="stylesheet">
 
@@ -26,30 +25,22 @@
 </head>
 
 <body>
-
-
+	<!-- HEADER -->
 	<jsp:include page="header.jsp"></jsp:include>
 
-	<!-- Page content -->
+
+
+	<!-- PAGE CONTENT -->
 	<div class="container">
-
 		<div class="row">
-
-			<!-- Content -->
 			<jsp:include page="${param.view}"></jsp:include>
-
 		</div>
-
-
 	</div>
 
+	<!-- FOOTER -->
 	<div class="container">
-
 		<hr>
-
-		<!-- Footer -->
 		<jsp:include page="footer.jsp"></jsp:include>
-
 	</div>
 
 	<!-- jQuery -->

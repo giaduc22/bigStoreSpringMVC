@@ -1,128 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div class="row">
 
-	<div class="col-sm-4 col-lg-4 col-md-4">
-		<div class="thumbnail">
-			<img src="https://goo.gl/nLXEgY" alt="">
-			<div class="caption">
-				<h4 class="pull-right">$24.99</h4>
-				<h4>
-					<a href="item.html">First Product</a>
-				</h4>
-				<p>
-					See more snippets like this online store item at <a target="_blank"
-						href="http://www.bootsnipp.com">Bootsnipp -
-						http://bootsnipp.com</a>.
-				</p>
+	<div class="row">
+		<c:forEach var="p" items="${products}">
+			<div class="col-sm-3 col-lg-3 col-md-3">
+				<div class="thumbnail">
+					<img src="${p.image}" alt="${p.id}">
+					<div class="caption">
+						<h4 class="pull-right">${p.price}</h4>
+						<h4>
+							<a href="item.html">${p.name}</a>
+						</h4>
+						<p>${p.description}</p>
+					</div>
+					<div class="ratings">
+						<p>
+							<a href="${contextPath}/item.html" class="btn btn-info btn-md"> <span
+								class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+							</a>
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="ratings">
-				<p class="pull-right">15 reviews</p>
-				<p>
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span>
-				</p>
-			</div>
+		</c:forEach>
+	</div>
+	
+	
+	<div class="row">
+		<div class="text-center">
+			<ul class="pagination">
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			</ul>
 		</div>
 	</div>
-
-	<div class="col-sm-4 col-lg-4 col-md-4">
-		<div class="thumbnail">
-			<img src="https://goo.gl/S5dKb3" alt="">
-			<div class="caption">
-				<h4 class="pull-right">$64.99</h4>
-				<h4>
-					<a href="#">Second Product</a>
-				</h4>
-				<p>This is a short description. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit.</p>
-			</div>
-			<div class="ratings">
-				<p class="pull-right">12 reviews</p>
-				<p>
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star-empty"></span>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-sm-4 col-lg-4 col-md-4">
-		<div class="thumbnail">
-			<img src="https://goo.gl/8Axcnj" alt="">
-			<div class="caption">
-				<h4 class="pull-right">$74.99</h4>
-				<h4>
-					<a href="#">Third Product</a>
-				</h4>
-				<p>This is a short description. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit.</p>
-			</div>
-			<div class="ratings">
-				<p class="pull-right">31 reviews</p>
-				<p>
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star-empty"></span>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-sm-4 col-lg-4 col-md-4">
-		<div class="thumbnail">
-			<img src="http://placehold.it/320x150" alt="">
-			<div class="caption">
-				<h4 class="pull-right">$84.99</h4>
-				<h4>
-					<a href="#">Fourth Product</a>
-				</h4>
-				<p>This is a short description. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit.</p>
-			</div>
-			<div class="ratings">
-				<p class="pull-right">6 reviews</p>
-				<p>
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star-empty"></span> <span
-						class="glyphicon glyphicon-star-empty"></span>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-sm-4 col-lg-4 col-md-4">
-		<div class="thumbnail">
-			<img src="http://placehold.it/320x150" alt="">
-			<div class="caption">
-				<h4 class="pull-right">$94.99</h4>
-				<h4>
-					<a href="#">Fifth Product</a>
-				</h4>
-				<p>This is a short description. Lorem ipsum dolor sit amet,
-					consectetur adipiscing elit.</p>
-			</div>
-			<div class="ratings">
-				<p class="pull-right">18 reviews</p>
-				<p>
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star-empty"></span>
-				</p>
-			</div>
-		</div>
-	</div>
-
 </div>

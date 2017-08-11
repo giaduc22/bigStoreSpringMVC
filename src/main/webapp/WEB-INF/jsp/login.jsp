@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <div class="row">
 	<div class="col-md-4 col-md-offset-4">
 		<div class="panel panel-default">
