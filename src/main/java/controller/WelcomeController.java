@@ -15,38 +15,61 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dao.ProductDAO;
 import entity.Product;
 import entity.ProductCategory;
 import entity.User;
 import service.ProductCategoryService;
+import service.ProductService;
 
 @Controller
-// @Transactional
 @RequestMapping("/")
 public class WelcomeController {
-	@Autowired(required=true)
+	@Autowired
 	ProductCategoryService productCategoryService;
+	@Autowired
+	ProductService productService;
 
-	// SessionFactory sessionFactory;
-
-	@RequestMapping(value = "index")
-	public String index(Model model) {
-		// Session session = sessionFactory.getCurrentSession();
-
+	@RequestMapping(value = "index?{category}", method = RequestMethod.GET)
+	public String index(Model model, @PathVariable("category") String category) {
 		List<ProductCategory> productCategories = productCategoryService.getAllProductCategory();
 		model.addAttribute("productCategories", productCategories);
-
-		// List<ProductCategory> productCategories = session.createQuery("from
-		// ProductCategory").list();
-		// model.addAttribute("productCategories", productCategories);
-
-		// List<Product> products = session.createQuery("from Product").list();
-		// model.addAttribute("products", products);
+		System.out.println(category);
+		List<Product> products = productService.getProductByCategory(Integer.parseInt(category));
+		for( int i=0; i<products.size(); i++){
+			System.out.println(products.get(i).getProduct_category());
+		}
+		
+		model.addAttribute("products", products);
 
 		return "index";
+	}
+
+	// @RequestMapping(value = "index?{category}", method = RequestMethod.GET)
+	// public String getProductByCategory(Model model, @PathVariable("category")
+	// String category) {
+	// List<ProductCategory> productCategories =
+	// productCategoryService.getAllProductCategory();
+	// model.addAttribute("productCategories", productCategories);
+	//
+	// List<Product> products = productService.getProductByCategory(2);
+	// model.addAttribute("products", products);
+	//
+	// return "index";
+	// }
+
+	@RequestMapping(value = "item?{id}", method = RequestMethod.GET)
+	public String onItemClick(Model model, @PathVariable("id") String id) {
+
+		List<Product> product = productService.getProductById(new Integer(id));
+		model.addAttribute("product", product);
+
+		return "item";
 	}
 
 	@RequestMapping(value = "login")
@@ -80,11 +103,6 @@ public class WelcomeController {
 	@RequestMapping(value = "user_manager")
 	public String userManager() {
 		return "admin/user_manager";
-	}
-
-	@RequestMapping(value = "item")
-	public String onItemClick() {
-		return "item";
 	}
 
 }

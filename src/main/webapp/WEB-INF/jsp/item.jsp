@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+
 <div class="thumbnail">
-	<img class="img-responsive"
-		src="https://goo.gl/S5dKb3"
-		alt="">
+	<img class="img-responsive" src="https://goo.gl/S5dKb3" alt="">
 	<div class="caption-full">
 		<h4 class="pull-right">$24.99</h4>
 		<h4>
-			<a href="#">Product Name</a>
+			<a href="#">Product name</a>
 		</h4>
 		<p>
 			See more snippets like these online store reviews at <a

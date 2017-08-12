@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <div class="row">
 
 	<div class="row">
@@ -19,7 +19,7 @@
 					</div>
 					<div class="ratings">
 						<p>
-							<a href="${contextPath}/item.html" class="btn btn-info btn-md"> <span
+							<a href="item.html?id=${p.id}" class="btn btn-info btn-md"> <span
 								class="glyphicon glyphicon-shopping-cart"></span> Add to cart
 							</a>
 						</p>
@@ -28,10 +28,9 @@
 			</div>
 		</c:forEach>
 	</div>
-	
-	
 	<div class="row">
 		<div class="text-center">
+		
 			<ul class="pagination">
 				<li><a href="#">1</a></li>
 				<li><a href="#">2</a></li>
