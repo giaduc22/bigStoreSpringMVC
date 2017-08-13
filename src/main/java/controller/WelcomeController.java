@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -36,15 +37,19 @@ public class WelcomeController {
 	ProductService productService;
 
 	@RequestMapping(value = "index?{category}", method = RequestMethod.GET)
-	public String index(Model model, @PathVariable("category") String category) {
+	public String index(Model model, @PathVariable("category") String category, HttpServletRequest request,
+			HttpServletResponse response) {
 		List<ProductCategory> productCategories = productCategoryService.getAllProductCategory();
 		model.addAttribute("productCategories", productCategories);
-		System.out.println(category);
-		List<Product> products = productService.getProductByCategory(Integer.parseInt(category));
-		for( int i=0; i<products.size(); i++){
-			System.out.println(products.get(i).getProduct_category());
+
+		String req = request.getParameter("category");
+
+		List<Product> products = new ArrayList<Product>();
+		if (req == null) {
+			products = productService.getAllProduct();
+		} else {
+			products = productService.getProductByCategory(Integer.parseInt(req));
 		}
-		
 		model.addAttribute("products", products);
 
 		return "index";
