@@ -1,94 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+		<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+			<div class="row">
 
-<div class="thumbnail">
-	<img class="img-responsive" src="https://goo.gl/S5dKb3" alt="">
-	<div class="caption-full">
-		<h4 class="pull-right">$24.99</h4>
-		<h4>
-			<a href="#">Product name</a>
-		</h4>
-		<p>
-			See more snippets like these online store reviews at <a
-				target="_blank" href="http://bootsnipp.com">Bootsnipp -
-				http://bootsnipp.com</a>.
-		</p>
-		<p>
-			Want to make these reviews work? Check out <strong><a
-				href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this
-					building a review system tutorial</a> </strong>over at maxoffsky.com!
-		</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-			do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-			enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-			ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-			reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-			pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-			culpa qui officia deserunt mollit anim id est laborum</p>
-	</div>
-	<div class="ratings">
-		<p class="pull-right">3 reviews</p>
-		<p>
-			<span class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star-empty"></span> 4.0 stars
-		</p>
-	</div>
-</div>
+				<c:forEach var="p" items="${product}">
+					<div class="col-md-6">
+						<img class="img-responsive" src="${p.image }" alt="${p.id}">
+					</div>
+					<div class="col-md-6">
+						<div>
+							<h2>Buy your new ${p.name}</h2>
+							<p>Buy online and get fast, free shipping.</p>
+							<p class="pull-right">
+								<a href="item.html?id=${p.id}" class="btn btn-info btn-md"> <span
+						class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+					</a>
+							</p>
+							<h3>$${p.price }</h3>
 
-<div class="well">
+							<p>${p.description}</p>
+						</div>
+					</div>
+				</c:forEach>
 
-	<div class="text-right">
-		<a class="btn btn-success">Leave a Review</a>
-	</div>
-
-	<hr>
-
-	<div class="row">
-		<div class="col-md-12">
-			<span class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-				class="pull-right">10 days ago</span>
-			<p>This product was great in terms of quality. I would definitely
-				buy another!</p>
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="row">
-		<div class="col-md-12">
-			<span class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-				class="pull-right">12 days ago</span>
-			<p>I've alredy ordered another one!</p>
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="row">
-		<div class="col-md-12">
-			<span class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star"></span> <span
-				class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-				class="pull-right">15 days ago</span>
-			<p>I've seen some better than this, but not at this price. I
-				definitely recommend this item.</p>
-		</div>
-	</div>
-
-</div>
+			</div>

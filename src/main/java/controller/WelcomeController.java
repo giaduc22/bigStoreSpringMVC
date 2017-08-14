@@ -39,39 +39,37 @@ public class WelcomeController {
 	@RequestMapping(value = "index?{category}", method = RequestMethod.GET)
 	public String index(Model model, @PathVariable("category") String category, HttpServletRequest request,
 			HttpServletResponse response) {
+
 		List<ProductCategory> productCategories = productCategoryService.getAllProductCategory();
 		model.addAttribute("productCategories", productCategories);
 
 		String req = request.getParameter("category");
-
+		// String pageNumber = request.getParameter("page");
+		// List<Integer> pageCount = new ArrayList<Integer>();
 		List<Product> products = new ArrayList<Product>();
 		if (req == null) {
 			products = productService.getAllProduct();
 		} else {
 			products = productService.getProductByCategory(Integer.parseInt(req));
 		}
+
+		// for (int i = 0; i < products.size(); i += 9) {
+		// pageCount.add(i);
+		// System.out.println(i);
+		// }
+
 		model.addAttribute("products", products);
 
-		return "index";
+		return "products";
 	}
 
-	// @RequestMapping(value = "index?{category}", method = RequestMethod.GET)
-	// public String getProductByCategory(Model model, @PathVariable("category")
-	// String category) {
-	// List<ProductCategory> productCategories =
-	// productCategoryService.getAllProductCategory();
-	// model.addAttribute("productCategories", productCategories);
-	//
-	// List<Product> products = productService.getProductByCategory(2);
-	// model.addAttribute("products", products);
-	//
-	// return "index";
-	// }
-
 	@RequestMapping(value = "item?{id}", method = RequestMethod.GET)
-	public String onItemClick(Model model, @PathVariable("id") String id) {
+	public String onItemClick(Model model, @PathVariable("id") String id, HttpServletRequest request) {
+		List<ProductCategory> productCategories = productCategoryService.getAllProductCategory();
+		model.addAttribute("productCategories", productCategories);
+		String req = request.getParameter("id");
 
-		List<Product> product = productService.getProductById(new Integer(id));
+		List<Product> product = productService.getProductById(Integer.parseInt(req));
 		model.addAttribute("product", product);
 
 		return "item";
@@ -87,23 +85,21 @@ public class WelcomeController {
 		return "cart";
 	}
 
-	// @RequestMapping(value = "product_manager")
-	// public String productManager(Model model) {
-	// Session session = sessionFactory.getCurrentSession();
-	// List<Product> products = session.createQuery("from Product").list();
-	// model.addAttribute("products", products);
-	// return "admin/product_manager";
-	// }
-	//
-	// @RequestMapping(value = "product_category_manager")
-	// public String productCategoryManager(Model model) {
-	// Session session = sessionFactory.getCurrentSession();
-	//
-	// List<ProductCategory> productCategories = session.createQuery("from
-	// ProductCategory").list();
-	// model.addAttribute("productCategories", productCategories);
-	// return "admin/product_category_manager";
-	// }
+	@RequestMapping(value = "product_manager")
+	public String productManager(Model model) {
+		List<ProductCategory> productCategories = productCategoryService.getAllProductCategory();
+		model.addAttribute("productCategories", productCategories);
+		List<Product> products = productService.getAllProduct();
+		model.addAttribute("products", products);
+		return "admin/product_manager";
+	}
+
+	@RequestMapping(value = "product_category_manager")
+	public String productCategoryManager(Model model) {
+		List<ProductCategory> productCategories = productCategoryService.getAllProductCategory();
+		model.addAttribute("productCategories", productCategories);
+		return "admin/product_category_manager";
+	}
 
 	@RequestMapping(value = "user_manager")
 	public String userManager() {

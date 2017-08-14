@@ -29,4 +29,9 @@ public class ProductService {
 	public List<Product> getProductById(Integer id) {
 		return productDAO.getProductById(id);
 	}
+
+	@Transactional
+	public List<Product> getProductByCategoryAndPage(Integer product_category, Integer firstResult, Integer maxResult) {
+		return productDAO.getProductByCategoryAndPage(product_category, firstResult, maxResult);
+	}
 }

@@ -36,6 +36,7 @@ public class ProductDAO {
 		Query query = session.createQuery("from Product where product_category = :product_category");
 		query.setParameter("product_category", product_category);
 		List<Product> products = query.list();
+
 		return products;
 	}
 
@@ -44,6 +45,17 @@ public class ProductDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Product where id = :id");
 		query.setParameter("id", id);
+		List<Product> product = query.list();
+		return product;
+	}
+
+	@Transactional
+	public List<Product> getProductByCategoryAndPage(Integer product_category, Integer firstResult, Integer maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Product where product_category = :product_category");
+		query.setParameter("product_category", product_category);
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResult);
 		List<Product> product = query.list();
 		return product;
 	}

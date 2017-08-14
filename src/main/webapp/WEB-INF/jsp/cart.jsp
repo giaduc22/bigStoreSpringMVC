@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
-<section class="container" ng-app="cartApp">
 	<div ng-controller="cartController" ng-init="initCartId('${cartId}')">
 		<div>
 			<a class="btn btn-danger pull-left" ng-click="clearCart()"> <span
-				class="glyphicon glyphicon-remove-sign"></span> Clear Cart
-			</a> <a href="#" class="btn btn-success pull-right"> <span
-				class="glyphicon-shopping-cart glyphicon"></span> Check out
-			</a>
+			class="glyphicon glyphicon-remove-sign"></span> Clear Cart
+		</a> <a href="#" class="btn btn-success pull-right"> <span
+			class="glyphicon-shopping-cart glyphicon"></span> Check out
+		</a>
 		</div>
 		<table class="table table-hover">
 			<tr>
@@ -22,10 +21,9 @@
 				<td>{{item.quantity}}</td>
 				<td>{{item.product.unitPrice}}</td>
 				<td>{{item.totalPrice}}</td>
-				<td><a href="#" class="label label-danger"
-					ng-click="removeFromCart(item.product.productId)"> <span
-						class="glyphicon glyphicon-remove" /></span> Remove
-				</a></td>
+				<td><a href="#" class="label label-danger" ng-click="removeFromCart(item.product.productId)"> <span
+					class="glyphicon glyphicon-remove" /></span> Remove
+			</a></td>
 			</tr>
 			<tr>
 				<th></th>
@@ -36,9 +34,8 @@
 			</tr>
 
 		</table>
-		<a href="<spring:url value="/products" />" class="btn btn-success">
-			<span class="glyphicon-circle-arrow-left glyphicon"></span> continue
-			shopping
-		</a>
+		<a href="<spring:url value=" /products " />" class="btn btn-success">
+		<span class="glyphicon-circle-arrow-left glyphicon"></span> continue
+		shopping
+	</a>
 	</div>
-</section>

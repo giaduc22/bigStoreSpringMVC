@@ -11,7 +11,11 @@
 
 	<a href="index.html" class="list-group-item">All</a>
 	<c:forEach var="p" items="${productCategories}">
-		<a href="index.html?category=${p.id}" class="list-group-item">${p.name}</a>
+		<a href="index.html?category=${p.id}" class="list-group-item">${p.name}
+			<span class="badge pull-right">
+				${p.name}
+			</span>
+		</a>
 	</c:forEach>
 
 </div>
