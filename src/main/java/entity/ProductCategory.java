@@ -1,6 +1,7 @@
 package entity;
 
-import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @javax.persistence.Entity
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 public class ProductCategory {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String name;
 	
@@ -17,9 +19,8 @@ public class ProductCategory {
 		super();
 	}
 	
-	public ProductCategory(int id, String name) {
+	public ProductCategory(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 	public int getId() {

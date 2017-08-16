@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 		<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+		<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 			<div class="row">
 				<div>
@@ -12,30 +13,30 @@
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<form>
+						<form action="${contextPath}/add_product.html" method="post">
 							<div class="form-group">
 								<label class="form-control-label" for="productName">Product name</label>
-								<input type="text" class="form-control" id="productName" placeholder="Product name">
+								<input type="text" name="name" class="form-control" id="productName" placeholder="Product name" required>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="productCategory">Product category</label>
-								<select class="form-control" id="productCategory">
-								<c:forEach var="p" items="${productCategories}">
-									<option>${p.name}</option>
-								</c:forEach>
+								<select name="product_category" class="form-control" id="productCategory">
+									<c:forEach var="p" items="${productCategories}">
+										<option value="${p.id}" >${p.name}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="imageURL">Image URL</label>
-								<input type="text" class="form-control" id="imageURL" placeholder="Image URL">
+								<input type="url" name="image" class="form-control" id="imageURL" placeholder="Image URL" required>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="description">Description</label>
-								<textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>
+								<textarea name="description" class="form-control" id="description" rows="3" placeholder="Description" required></textarea>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="price">Price</label>
-								<input type="text" class="form-control" id="price" placeholder="Price">
+								<input type="number" name="price" class="form-control" id="price" placeholder="Price" required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Add</button>
@@ -71,7 +72,7 @@
 									</a>
 								</td>
 								<td>
-									<a href="#" class="btn btn-danger"> 
+									<a href="${contextPath}/delete_product.html?id=${p.id}" class="btn btn-danger"> 
 										<span class="glyphicon glyphicon-remove"></span> Remove
 									</a>
 								</td>
@@ -79,30 +80,34 @@
 							<tr>
 								<td colspan="7">
 									<div id="${p.id}" class="collapse">
-										<form>
+										<form  action="${contextPath}/update_product.html" method="post">
+											<div class="form-group">
+												<label class="form-control-label" for="productId">Product Id</label>
+												<input type="text" name="id" readonly class="form-control" id="productId" value="${p.id}">
+											</div>
 											<div class="form-group">
 												<label class="form-control-label" for="productName">Product name</label>
-												<input type="text" class="form-control" id="productName" value="${p.name}">
+												<input type="text" name="name" class="form-control" id="productName" value="${p.name}" required>
 											</div>
 											<div class="form-group">
 												<label class="form-control-label" for="productCategory">Product category</label>
-												<select class="form-control" id="productCategory">
+												<select class="form-control" name="product_category" id="productCategory">
 													<c:forEach var="category" items="${productCategories}">
-														<option>${category.name}</option>
+														<option value="${category.id}">${category.name}</option>
 													</c:forEach>
 												</select>
 											</div>
 											<div class="form-group">
 												<label class="form-control-label" for="imageURL">Image URL</label>
-												<input type="text" class="form-control" id="imageURL" value="${p.image}">
+												<input type="url" name="image" class="form-control" id="imageURL" value="${p.image}" required>
 											</div>
 											<div class="form-group">
 												<label class="form-control-label" for="description">Description</label>
-												<textarea class="form-control" id="description" rows="3">${p.description}</textarea>
+												<textarea class="form-control" name="description" id="description" rows="3" required>${p.description}</textarea>
 											</div>
 											<div class="form-group">
 												<label class="form-control-label" for="price">Price</label>
-												<input type="text" class="form-control" id="price" value="${p.price}">
+												<input type="number" name="price" class="form-control" id="price" value="${p.price}" required>
 											</div>
 											<div class="form-group">
 												<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Update</button>

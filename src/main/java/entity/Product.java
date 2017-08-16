@@ -1,36 +1,42 @@
 package entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private Integer product_category;
 	private String name;
+	private Integer product_category;
+	private String image;	
 	private String description;
 	private Double price;
-	private String image;
+	
 
 	public Product() {
 		super();
 	}
 
-	public Product(Integer id, Integer product_category, String name, String description, Double price, String image) {
+	
+
+	public Product(String name, Integer product_category, String image, String description, Double price) {
 		super();
-		this.id = id;
-		this.product_category = product_category;
 		this.name = name;
+		this.product_category = product_category;
+		this.image = image;
 		this.description = description;
 		this.price = price;
-		this.image = image;
 	}
+
+
 
 	public Integer getId() {
 		return id;

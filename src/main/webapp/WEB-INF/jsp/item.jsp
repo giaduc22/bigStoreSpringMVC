@@ -18,7 +18,7 @@
 						class="glyphicon glyphicon-shopping-cart"></span> Add to cart
 					</a>
 							</p>
-							<h3>$${p.price }</h3>
+							<h3>$ ${p.price }</h3>
 
 							<p>${p.description}</p>
 						</div>

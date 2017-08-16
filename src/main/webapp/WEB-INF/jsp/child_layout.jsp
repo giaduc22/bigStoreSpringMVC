@@ -25,7 +25,7 @@
 		<body>
 			<!-- HEADER -->
 			<jsp:include page="header.jsp"></jsp:include>
-
+			
 			<!-- PAGE CONTAINER -->
 			<div class="container">
 				<div class="row">

@@ -1,34 +1,53 @@
 package controller;
 
-import java.util.List;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import entity.ProductCategory;
+import dao.ProductCategoryDAO;
 
-
-@Transactional
 @Controller
 public class ProductCategoryController {
-
 	@Autowired
-	SessionFactory sessionFactory;
+	ProductCategoryDAO productCategoryDAO;
 
-	public String index(ModelMap modelMap) {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from ProductCategory";
-		Query query = session.createQuery(hql);
-		List<ProductCategory> list = query.list();
-		modelMap.addAttribute("products", list);
-		return "menu_bar";
+	@RequestMapping(value = "product_category_manager", method = RequestMethod.GET)
+	public String productCategoryManager() {
+		return "admin/product_category_manager";
 	}
+
+	@RequestMapping(value = "add_product_category", method = RequestMethod.POST)
+	public String addProductCategory(@RequestParam String name) {
+		if (productCategoryDAO.addProductCategory(name)) {
+
+		} else {
+
+		}
+		return "redirect:/product_category_manager.html";
+	}
+	
+	@RequestMapping(value = "update_product_category", method = RequestMethod.POST)
+	public String updateProductCategory(@RequestParam int id, @RequestParam String name) {
+		if (productCategoryDAO.updateProductCategory(id, name)) {
+			return "redirect:/product_category_manager.html";
+		} else {
+			return "redirect:/product_category_manager.html";
+		}
+
+	}
+
+	@RequestMapping(value = "delete_product_category", method = RequestMethod.GET)
+	public String removeProductCategory(@RequestParam int id) {
+		if (productCategoryDAO.removeProductCategory(id)) {
+			return "redirect:/product_category_manager.html";
+		} else {
+			return "redirect:/product_category_manager.html";
+		}
+
+	}
+
 	
 
 }

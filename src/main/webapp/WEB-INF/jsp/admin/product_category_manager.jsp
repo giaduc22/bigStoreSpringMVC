@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-		<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 			<div class="row">
 				<div>
@@ -10,13 +12,14 @@
 						<span
 						class="glyphicon glyphicon-plus"></span> Add
 					</a>
+					<h2>${message}</h2>
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<form>
+						<form action="${contextPath}/add_product_category.html" method="post">
 							<div class="form-group">
 								<label class="form-control-label" for="productCategoryName">Product category name</label>
-								<input type="text" class="form-control" id="productCategoryName" placeholder="Product name">
+								<input type="text" name="name" class="form-control" id="productCategoryName" placeholder="Product name" required>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Add</button>
@@ -44,7 +47,7 @@
 									</a>
 								</td>
 								<td>
-									<a href="#" class="btn btn-danger"> 
+									<a href="${contextPath}/delete_product_category.html?id=${p.id}" class="btn btn-danger"> 
 										<span class="glyphicon glyphicon-remove"></span> Remove
 									</a>
 								</td>
@@ -52,10 +55,14 @@
 							<tr>
 								<td colspan="3">
 									<div class="collapse" id="${p.id}">
-										<form>
+										<form action="${contextPath}/update_product_category.html" method="post">
+											<div class="form-group">
+												<label class="form-control-label" for="productCategoryId">Product category id</label>
+												<input type="text" name="id" readonly class="form-control" id="productCategoryId" value="${p.id}" >
+											</div>
 											<div class="form-group">
 												<label class="form-control-label" for="productCategoryName">Product category name</label>
-												<input type="text" class="form-control" id="productCategoryName" value="${p.name}">
+												<input type="text" name="name" class="form-control" id="productCategoryName" value="${p.name}" required>
 											</div>
 											
 											<div class="form-group">
