@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import dao.ProductCategoryDAO;
 import dao.ProductDAO;
+import dao.UserDAO;
 import entity.Product;
 import entity.ProductCategory;
+import entity.User;
 
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice {
@@ -19,6 +21,8 @@ public class ControllerAdvice {
 	ProductCategoryDAO productCategoryDAO;
 	@Autowired
 	ProductDAO productDAO;
+	@Autowired
+	UserDAO userDAO;
 
 	@ModelAttribute
 	public void getAllProductCategory(Model model) {
@@ -31,13 +35,17 @@ public class ControllerAdvice {
 		model.addAttribute("productCategories", productCategories);
 		model.addAttribute("size", map);
 	}
-	
+
 	@ModelAttribute
 	public void getAllProduct(Model model) {
 		List<Product> products = productDAO.getAllProduct();
 		model.addAttribute("products", products);
 	}
-	
-	
+
+	@ModelAttribute
+	public void getAllUser(Model model) {
+		List<User> users = userDAO.getAllUser();
+		model.addAttribute("users", users);
+	}
 
 }

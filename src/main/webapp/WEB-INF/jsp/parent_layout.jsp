@@ -24,7 +24,7 @@
 
 		<body>
 			<!-- HEADER -->
-			<jsp:include page="header.jsp"></jsp:include>
+			<jsp:include page="common/header.jsp"></jsp:include>
 			
 			<!-- PAGE CONTAINER -->
 			<div class="container">
@@ -36,7 +36,7 @@
 			<!-- FOOTER -->
 			<div class="container">
 				<hr>
-				<jsp:include page="footer.jsp"></jsp:include>
+				<jsp:include page="common/footer.jsp"></jsp:include>
 			</div>
 
 			<!-- jQuery -->
@@ -59,7 +59,7 @@
 							$.get(url + selectedOption, () => {
 								location.reload();
 							});
-						}
+						} 
 					});
 				});
 			</script>

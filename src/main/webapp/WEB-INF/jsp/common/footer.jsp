@@ -13,10 +13,10 @@
 					</h1>
 					<div class="form-group">
 						<select id="locales" class="form-control">
-				<option value=""><spring:message code="lang.change" /></option>
-				<option value="en"><spring:message code="lang.eng" /></option>
-				<option value="vi"><spring:message code="lang.vn" /></option>
-			</select>
+							<option value=""><spring:message code="lang.change" /></option>
+							<option value="en"><spring:message code="lang.eng" /></option>
+							<option value="vi"><spring:message code="lang.vn" /></option>
+						</select>
 					</div>
 				</div>
 

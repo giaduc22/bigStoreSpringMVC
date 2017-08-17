@@ -22,7 +22,7 @@ version="3.0">
     </servlet>
     <servlet-mapping>
         <servlet-name>giaduc</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     
     <!-- CharacterEncodingFilter -->

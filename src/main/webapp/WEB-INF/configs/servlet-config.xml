@@ -25,5 +25,13 @@
 
 
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/login.html" />
+			<bean id="loggerInterceptor" class="interceptor.LoggerInterceptor" />
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+
 
 </beans>

@@ -14,7 +14,7 @@
 							<h2>Buy your new ${p.name}</h2>
 							<p>Buy online and get fast, free shipping.</p>
 							<p class="pull-right">
-								<a href="item.html?id=${p.id}" class="btn btn-info btn-md"> <span
+								<a href="item?id=${p.id}" class="btn btn-info btn-md"> <span
 						class="glyphicon glyphicon-shopping-cart"></span> Add to cart
 					</a>
 							</p>

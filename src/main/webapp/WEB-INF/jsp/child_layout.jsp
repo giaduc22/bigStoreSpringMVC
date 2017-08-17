@@ -24,14 +24,14 @@
 
 		<body>
 			<!-- HEADER -->
-			<jsp:include page="header.jsp"></jsp:include>
+			<jsp:include page="common/header.jsp"></jsp:include>
 			
 			<!-- PAGE CONTAINER -->
 			<div class="container">
 				<div class="row">
 					<!-- MENU BAR -->
 					<div class="col-md-3">
-						<jsp:include page="menu_bar.jsp"></jsp:include>
+						<jsp:include page="common/menu_bar.jsp"></jsp:include>
 					</div>
 
 					<!-- CONTENT -->
@@ -45,7 +45,7 @@
 			<!-- FOOTER -->
 			<div class="container">
 				<hr>
-				<jsp:include page="footer.jsp"></jsp:include>
+				<jsp:include page="common/footer.jsp"></jsp:include>
 			</div>
 
 			<!-- jQuery -->

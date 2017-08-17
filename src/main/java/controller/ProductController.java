@@ -1,12 +1,16 @@
 package controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.ProductDAO;
+import entity.Product;
 
 @Controller
 public class ProductController {
@@ -14,8 +18,14 @@ public class ProductController {
 	@Autowired
 	ProductDAO productDAO;
 
-	@RequestMapping(value = "product_manager", method = RequestMethod.GET)
-	public String productManager() {
+	@RequestMapping(value = { "product_manager" }, method = RequestMethod.GET)
+	public String productManager(@PathVariable Optional<Integer> page) {
+		
+		if (page.isPresent()) {
+			System.out.println(page.get());
+		}
+		
+		
 		return "admin/product_manager";
 	}
 
@@ -35,7 +45,10 @@ public class ProductController {
 	public String updateProductCategory(@RequestParam Integer id, @RequestParam String name,
 			@RequestParam Integer product_category, @RequestParam String image, @RequestParam String description,
 			@RequestParam Double price) {
-		if (productDAO.updateProduct(id, name, product_category, image, description, price)) {
+		Product product = new Product(name, product_category, image, description, price);
+		product.setId(id);
+
+		if (productDAO.updateProduct1(product)) {
 			System.out.println("okay!!!");
 			return "redirect:/product_manager.html";
 		} else {

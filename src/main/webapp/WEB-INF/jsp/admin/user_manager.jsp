@@ -12,16 +12,19 @@
 			<tr>
 				<th>ID</th>
 				<th>Username</th>
+				<th>Password</th>
 				<th>Email</th>
 				<th>Edit</th>
 				<th>Remove</th>
 			</tr>
 		</thead>
-		<%-- <tbody>
-			<c:forEach var="p" items="${productCategories}">
+		<tbody>
+			<c:forEach var="u" items="${users}">
 					<tr>
-						<td>${p.id}</td>
-						<td>${p.name}</td>
+						<td>${u.id}</td>
+						<td>${u.username}</td>
+						<td>${u.password}</td>
+						<td>${u.email}</td>
 						<td><a href="#" class="btn btn-info"> <span
 								class="glyphicon glyphicon-edit"></span> Edit
 						</a></td>
@@ -30,7 +33,7 @@
 						</a></td>
 					</tr>
 			</c:forEach>
-		</tbody> --%>
+		</tbody>
 	</table>
 </div>
 <div class="row">

@@ -16,7 +16,7 @@
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<form action="${contextPath}/add_product_category.html" method="post">
+						<form action="${contextPath}/add_product_category" method="post">
 							<div class="form-group">
 								<label class="form-control-label" for="productCategoryName">Product category name</label>
 								<input type="text" name="name" class="form-control" id="productCategoryName" placeholder="Product name" required>
@@ -47,7 +47,7 @@
 									</a>
 								</td>
 								<td>
-									<a href="${contextPath}/delete_product_category.html?id=${p.id}" class="btn btn-danger"> 
+									<a href="${contextPath}/delete_product_category?id=${p.id}" class="btn btn-danger"> 
 										<span class="glyphicon glyphicon-remove"></span> Remove
 									</a>
 								</td>
@@ -55,7 +55,7 @@
 							<tr>
 								<td colspan="3">
 									<div class="collapse" id="${p.id}">
-										<form action="${contextPath}/update_product_category.html" method="post">
+										<form action="${contextPath}/update_product_category" method="post">
 											<div class="form-group">
 												<label class="form-control-label" for="productCategoryId">Product category id</label>
 												<input type="text" name="id" readonly class="form-control" id="productCategoryId" value="${p.id}" >

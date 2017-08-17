@@ -12,13 +12,13 @@
 								<div class="caption">
 									<h4 class="pull-right">$ ${p.price}</h4>
 									<h4>
-										<a href="item.html?id=${p.id}">${p.name}</a>
+										<a href="item?id=${p.id}">${p.name}</a>
 									</h4>
 									<p>${p.description}</p>
 								</div>
 								<div class="ratings">
 									<p>
-										<a href="item.html?id=${p.id}" class="btn btn-info btn-block"> <span
+										<a href="item?id=${p.id}" class="btn btn-info btn-block"> <span
 								class="glyphicon glyphicon-shopping-cart"></span> Add to cart
 							</a>
 									</p>
