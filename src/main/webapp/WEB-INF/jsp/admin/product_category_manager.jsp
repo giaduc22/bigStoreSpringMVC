@@ -6,12 +6,15 @@
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 			<div class="row">
-				<div>
-					<h2>Product category manager</h2>
+			<h2>Product category manager</h2>
+				<div class="col-md-6">
 					<a class="btn btn-success" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> 
 						<span
 						class="glyphicon glyphicon-plus"></span> Add
 					</a>
+				</div>
+				<div class="col-md-6">
+					<jsp:include page="../common/search.jsp"></jsp:include>
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
@@ -29,7 +32,7 @@
 				<table class="table" id="myTable">
 					<thead class="thead-inverse">
 						<tr>
-							<th>ID</th>
+							<th>Id</th>
 							<th>Name</th>
 							<th>Edit</th>
 							<th>Remove</th>
@@ -52,7 +55,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="3">
+								<th></th>
+								<th colspan="2">
 									<div class="collapse" id="${p.id}">
 										<form action="${contextPath}/update_product_category" method="post">
 											<div class="form-group">
@@ -69,8 +73,8 @@
 											</div>
 										</form>
 									</div>
-								</td>
-								<td colspan="1"></td>
+								</th>
+								<th></th>
 							</tr>
 						</c:forEach>
 					</tbody>

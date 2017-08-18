@@ -5,14 +5,17 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <div class="row">
-	<div>
-		<h2>Product manager</h2>
+<h2>Product manager</h2>
+	<div class="col-md-6">
 		<a class="btn btn-success" data-toggle="collapse"
 			href="#collapseExample" aria-expanded="false"
 			aria-controls="collapseExample"> <span
 			class="glyphicon glyphicon-plus"></span> Add
 		</a>
 	</div>
+	<div class="col-md-6">
+					<jsp:include page="../common/search.jsp"></jsp:include>
+				</div>
 	<div class="collapse" id="collapseExample">
 		<div class="card card-body">
 			<form action="${contextPath}/add_product" method="post">

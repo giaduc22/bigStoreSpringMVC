@@ -7,20 +7,18 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<c:set var="req" value="${pageContext.request}" />
+<%-- <c:set var="req" value="${pageContext.request}" />
 <c:set var="baseURL" value="${fn:replace(req.requestURL, req.requestURI, '')}" />
 <c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
 <c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-<c:set var="pageUrl" value="${ baseURL }${ requestPath }${ not empty params?'?'+=params:'' }"/>
+<c:set var="pageUrl" value="${ baseURL }${ requestPath }${ not empty params?'?'+=params:'' }"/> --%>
 
 
-<jsp:include page="search.jsp"></jsp:include>
 
 <p class="lead">
 	<spring:message code="lang.product_category" />
 </p>
 <div class="list-group">
-	<p>${pageUrl}</p>
 	
 	
 	<a href="${contextPath}/index" class="list-group-item">All</a>
