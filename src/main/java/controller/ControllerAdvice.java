@@ -27,20 +27,14 @@ public class ControllerAdvice {
 	@ModelAttribute
 	public void getAllProductCategory(Model model) {
 		List<ProductCategory> productCategories = productCategoryDAO.getAllProductCategory();
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		for (int i = 0; i < productCategories.size(); i++) {
-			Integer size = productDAO.getProductByCategory(productCategories.get(i).getId()).size();
-			map.put(i, size);
-		}
 		model.addAttribute("productCategories", productCategories);
-		model.addAttribute("size", map);
 	}
 
-	@ModelAttribute
-	public void getAllProduct(Model model) {
-		List<Product> products = productDAO.getAllProduct();
-		model.addAttribute("products", products);
-	}
+//	@ModelAttribute
+//	public void getAllProduct(Model model) {
+//		List<Product> products = productDAO.getAllProduct();
+//		model.addAttribute("products", products);
+//	}
 
 	@ModelAttribute
 	public void getAllUser(Model model) {

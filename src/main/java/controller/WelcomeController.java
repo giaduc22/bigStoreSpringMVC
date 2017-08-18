@@ -1,8 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,35 @@ public class WelcomeController {
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(Model model, @RequestParam(required = false) Integer category,
-			@RequestParam(required = false) Integer page, HttpServletResponse response) {
+			@RequestParam(required = false) Integer page) {
+		model.addAttribute("productCategories", productCategoryDAO.getAllProductCategory());
+
+		if (null != category) {
+			productDAO.setPageNumber(page);
+			model.addAttribute("products", productDAO.getProductByCategory(category));
+			System.out.println(productDAO.getPage());
+			try {
+				List<Integer> pageCount = new ArrayList<Integer>();
+				for (int i = 0; i < productDAO.getPage(); i++) {
+					pageCount.add(i);
+				}
+				model.addAttribute("pagination", pageCount);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			productDAO.setPageNumber(page);
+			model.addAttribute("products", productDAO.getAllProduct());
+			try {
+				List<Integer> pageCount = new ArrayList<Integer>();
+				for (int i = 0; i < productDAO.getPage(); i++) {
+					pageCount.add(i);
+				}
+				model.addAttribute("pagination", pageCount);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		return "products";
 	}
@@ -37,13 +64,7 @@ public class WelcomeController {
 	public String onItemClick(Model model, @RequestParam Integer id) {
 		List<Product> product = productDAO.getProductById(id);
 		model.addAttribute("product", product);
-
 		return "item";
-	}
-
-	@RequestMapping(value = "cart")
-	public String cart() {
-		return "user/cart";
 	}
 
 }

@@ -7,17 +7,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.UserDAO;
 
-
 @Controller
 public class UserController {
 
 	@Autowired
 	UserDAO userDAO;
-	
-	
+
 	@RequestMapping(value = "user_manager", method = RequestMethod.GET)
 	public String userManager() {
 		return "admin/user_manager";
+	}
+
+	@RequestMapping(value = "cart")
+	public String cart() {
+		return "user/cart";
 	}
 
 }

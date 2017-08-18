@@ -20,14 +20,17 @@
 	<spring:message code="lang.product_category" />
 </p>
 <div class="list-group">
-<p>${pageUrl}</p>
-	<a href="${pageUrl}?category=4" class="list-group-item">All</a>
+	<p>${pageUrl}</p>
+	
+	
+	<a href="${contextPath}/index" class="list-group-item">All</a>
 	<c:forEach var="p" items="${productCategories}" varStatus="i">
-		<a href="page=${p.id}" class="list-group-item">${p.name}
-			<span class="badge pull-right"> ${p.id} <%-- <c:out value="${size.get}"></c:out> --%>
-		</span>
+		<a href="${contextPath}/index?category=${p.id}" class="list-group-item">
+			${p.name}
+			<span class="badge pull-right">${p.id}</span>
 		</a>
-
 	</c:forEach>
+	
+	
 </div>
 

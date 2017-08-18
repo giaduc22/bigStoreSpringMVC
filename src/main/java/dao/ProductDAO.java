@@ -3,10 +3,10 @@ package dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -24,10 +24,19 @@ public class ProductDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	Integer pageSize = 10, pageNumber = 0;
-	
-	
+
+	private Integer pageSize = 10;
+	private Integer pageNumber;
+	private Long countResults;
+	private int lastPageNumber;
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public Integer getPage() {
+		return lastPageNumber;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -35,18 +44,22 @@ public class ProductDAO {
 		List<Product> products = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
-			
 			Criteria criteria = session.createCriteria(Product.class);
-			criteria.setFirstResult(pageNumber);
-			criteria.setMaxResults(pageSize);
-			products = criteria.list();
-			
-			Criteria criteriaCount = session.createCriteria(Product.class);
-			criteriaCount.setProjection(Projections.rowCount());
-			Long countResults = (Long) criteriaCount.uniqueResult();
-			int lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-			
-			
+			if (null != pageNumber) {
+				criteria.setFirstResult((pageNumber - 1) * pageSize);
+				criteria.setMaxResults(pageSize);
+				products = criteria.list();
+			} else {
+				criteria.setFirstResult(0);
+				criteria.setMaxResults(pageSize);
+				products = criteria.list();
+			}
+
+			criteria.setProjection(Projections.rowCount());
+			countResults = (Long) criteria.uniqueResult();
+			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+			System.out.println(lastPageNumber);
+			System.out.println(countResults);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,9 +72,23 @@ public class ProductDAO {
 		List<Product> products = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
-			Query query = session.createQuery("from Product where product_category = :product_category");
-			query.setParameter("product_category", product_category);
-			products = query.list();
+			Criteria criteria = session.createCriteria(Product.class);
+			criteria.add(Restrictions.eq("product_category", product_category));
+			if (null != pageNumber) {
+				criteria.setFirstResult((pageNumber - 1) * pageSize);
+				criteria.setMaxResults(pageSize);
+				products = criteria.list();
+			} else {
+				criteria.setFirstResult(0);
+				criteria.setMaxResults(pageSize);
+				products = criteria.list();
+			}
+			
+			criteria.add(Restrictions.eq("product_category", product_category));
+			criteria.setProjection(Projections.rowCount());
+			countResults = (Long) criteria.uniqueResult();
+			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+			System.out.println(countResults);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,9 +101,9 @@ public class ProductDAO {
 		List<Product> product = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
-			Query query = session.createQuery("from Product where id = :id");
-			query.setParameter("id", id);
-			product = query.list();
+			Criteria criteria = session.createCriteria(Product.class);
+			criteria.add(Restrictions.eq("id", id));
+			product = criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
