@@ -58,6 +58,7 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 			 crossorigin="anonymous"></script>
 
+			<!-- CHANGE LANGUAGE -->
 			<script type="text/javascript">
 				$(() => {
 					$("#locales").change(() => {
@@ -73,6 +74,30 @@
 				});
 			</script>
 
+			<!-- SEARCH -->
+			<script>
+			function myFunction() {
+			  // Declare variables
+			  var input, filter, table, tr, td, i;
+			  input = document.getElementById("searchBox");
+			  filter = input.value.toUpperCase();
+			  table = document.getElementById("myTable");
+			  tr = table.getElementsByTagName("tr");
+			
+			  // Loop through all table rows, and hide those who don't match the search query
+			  for (i = 0; i < tr.length; i++) {
+				  tdId = tr[i].getElementsByTagName("td")[0];
+			    tdName = tr[i].getElementsByTagName("td")[1];
+			    if (tdName || tdId) {
+			      if (tdName.innerHTML.toUpperCase().indexOf(filter) > -1 || tdId.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+			    }
+			  }
+			}
+			</script>
 
 		</body>
 

@@ -12,7 +12,6 @@
 						<span
 						class="glyphicon glyphicon-plus"></span> Add
 					</a>
-					<h2>${message}</h2>
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
@@ -27,7 +26,7 @@
 						</form>
 					</div>
 				</div>
-				<table class="table">
+				<table class="table" id="myTable">
 					<thead class="thead-inverse">
 						<tr>
 							<th>ID</th>
@@ -76,15 +75,4 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-			<div class="row">
-				<div class="text-center">
-					<ul class="pagination">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-					</ul>
-				</div>
 			</div>

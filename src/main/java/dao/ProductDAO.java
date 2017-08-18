@@ -37,6 +37,20 @@ public class ProductDAO {
 	public Integer getPage() {
 		return lastPageNumber;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<Product> getProducts() {
+		List<Product> products = null;
+		Session session = this.sessionFactory.getCurrentSession();
+		try {
+			Criteria criteria = session.createCriteria(Product.class);
+			products = criteria.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return products;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional

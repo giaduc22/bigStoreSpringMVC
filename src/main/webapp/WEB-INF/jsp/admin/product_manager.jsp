@@ -53,10 +53,10 @@
 			</form>
 		</div>
 	</div>
-	<table class="table">
-		<thead class="thead-default">
+	<table class="table" id="myTable">
+		<thead class="thead-inverse">
 			<tr>
-				<th>#</th>
+				<th>Id</th>
 				<th>Name</th>
 				<th>Image</th>
 				<th>Description</th>
@@ -68,10 +68,8 @@
 		<tbody>
 			<c:forEach var="p" items="${products}">
 				<tr>
-					<th>${p.id}</th>
-					<td>
-						<h3>${p.name}</h3>
-					</td>
+					<td>${p.id}</td>
+					<td>${p.name}</td>
 					<td><img src="${p.image}" alt="${p.id}"
 						class="img-responsive img-fluid"></td>
 					<td>${p.description}</td>
@@ -87,7 +85,9 @@
 					</a></td>
 				</tr>
 				<tr>
-					<td colspan="7">
+					<th></th>
+					<th></th>
+					<th colspan="3">
 						<div id="${p.id}" class="collapse">
 							<form action="${contextPath}/update_product" method="post">
 								<div class="form-group">
@@ -132,7 +132,8 @@
 								</div>
 							</form>
 						</div>
-					</td>
+					</th>
+					<th></th>
 				</tr>
 
 			</c:forEach>

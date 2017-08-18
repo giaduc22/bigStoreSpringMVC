@@ -16,7 +16,7 @@ public class ProductCategoryController {
 	ProductCategoryDAO productCategoryDAO;
 
 	@RequestMapping(value = "product_category_manager", method = RequestMethod.GET)
-	public String productCategoryManager(HttpServletRequest request) {
+	public String productCategoryManager() {
 		return "admin/product_category_manager";
 	}
 

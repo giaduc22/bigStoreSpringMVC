@@ -30,11 +30,11 @@ public class ControllerAdvice {
 		model.addAttribute("productCategories", productCategories);
 	}
 
-//	@ModelAttribute
-//	public void getAllProduct(Model model) {
-//		List<Product> products = productDAO.getAllProduct();
-//		model.addAttribute("products", products);
-//	}
+	@ModelAttribute
+	public void getAllProduct(Model model) {
+		List<Product> products = productDAO.getProducts();
+		model.addAttribute("products", products);
+	}
 
 	@ModelAttribute
 	public void getAllUser(Model model) {
