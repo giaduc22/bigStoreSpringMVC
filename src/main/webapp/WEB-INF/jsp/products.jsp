@@ -47,7 +47,7 @@
 	<div class="row">
 		<div class="text-center">
 			<ul class="pagination">
-				<c:forEach var="page" items="${pagination}" begin="0">
+				<c:forEach var="page" end="${pagination}" begin="0">
 					<li><a href="<%=url%>page=${page}">${page}</a></li>
 				</c:forEach>
 			</ul>

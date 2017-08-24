@@ -8,10 +8,7 @@
 					<div class="col-lg-12 text-center">
 						<p>Copyright &copy; Developed by giaduc</p>
 					</div>
-					<h1>
-						<spring:message code="greeting" />
-					</h1>
-					<div class="form-group">
+					<div class="form-group pull-left">
 						<select id="locales" class="form-control">
 							<option value=""><spring:message code="lang.change" /></option>
 							<option value="en"><spring:message code="lang.eng" /></option>

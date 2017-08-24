@@ -9,35 +9,29 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import entity.Product;
 
-@Service("productService")
 @Repository
 public class ProductDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
 	private Integer pageSize = 10;
-	private Integer pageNumber;
+	private Integer page = 0;
 	private Long countResults;
 	private int lastPageNumber;
 
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
+	public void setPage(Integer page) {
+		this.page = page;
 	}
 
-	public Integer getPage() {
+	public int getPage() {
 		return lastPageNumber;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Product> getProducts() {
@@ -59,21 +53,14 @@ public class ProductDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			Criteria criteria = session.createCriteria(Product.class);
-			if (null != pageNumber) {
-				criteria.setFirstResult((pageNumber - 1) * pageSize);
-				criteria.setMaxResults(pageSize);
-				products = criteria.list();
-			} else {
-				criteria.setFirstResult(0);
-				criteria.setMaxResults(pageSize);
-				products = criteria.list();
-			}
+			criteria.setFirstResult(page * pageSize);
+			criteria.setMaxResults(pageSize);
+			products = criteria.list();
 
+			// LAST	PAGE CALCULATOR
 			criteria.setProjection(Projections.rowCount());
 			countResults = (Long) criteria.uniqueResult();
 			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-			System.out.println(lastPageNumber);
-			System.out.println(countResults);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,21 +75,14 @@ public class ProductDAO {
 		try {
 			Criteria criteria = session.createCriteria(Product.class);
 			criteria.add(Restrictions.eq("product_category", product_category));
-			if (null != pageNumber) {
-				criteria.setFirstResult((pageNumber - 1) * pageSize);
-				criteria.setMaxResults(pageSize);
-				products = criteria.list();
-			} else {
-				criteria.setFirstResult(0);
-				criteria.setMaxResults(pageSize);
-				products = criteria.list();
-			}
+			criteria.setFirstResult(page * pageSize);
+			criteria.setMaxResults(pageSize);
+			products = criteria.list();
 			
-			criteria.add(Restrictions.eq("product_category", product_category));
+			// LAST	PAGE CALCULATOR
 			criteria.setProjection(Projections.rowCount());
 			countResults = (Long) criteria.uniqueResult();
 			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-			System.out.println(countResults);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,10 +105,9 @@ public class ProductDAO {
 	}
 
 	@Transactional
-	public Boolean addProduct(String name, Integer product_category, String image, String description, Double price) {
+	public Boolean addProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
-			Product product = new Product(name, product_category, image, description, price);
 			session.save(product);
 			return true;
 		} catch (Exception e) {
@@ -138,7 +117,7 @@ public class ProductDAO {
 	}
 
 	@Transactional
-	public Boolean updateProduct1(Product product) {
+	public Boolean updateProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			session.update(product);
@@ -149,26 +128,11 @@ public class ProductDAO {
 		}
 	}
 
-	@Transactional
-	public Boolean updateProduct(Integer id, String name, Integer product_category, String image, String description,
-			Double price) {
-		Session session = this.sessionFactory.getCurrentSession();
-		try {
-			Product product = new Product(name, product_category, image, description, price);
-			product.setId(id);
-			session.saveOrUpdate(product);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
 
 	@Transactional
-	public Boolean removeProduct(Integer id) {
+	public Boolean removeProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
-			Product product = (Product) session.load(Product.class, id);
 			session.delete(product);
 			return true;
 		} catch (Exception e) {

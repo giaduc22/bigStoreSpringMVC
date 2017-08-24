@@ -1,11 +1,7 @@
 package controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,11 +23,8 @@ public class ProductController {
 	@RequestMapping(value = "add_product", method = RequestMethod.POST)
 	public String addProduct(@RequestParam String name, @RequestParam Integer product_category,
 			@RequestParam String image, @RequestParam String description, @RequestParam Double price) {
-		if (productDAO.addProduct(name, product_category, image, description, price)) {
-			System.out.println("okay");
-		} else {
-			System.out.println("not okay!!!");
-		}
+		Product product = new Product(name, product_category, image, description, price);
+		productDAO.addProduct(product);
 
 		return "redirect:/product_manager.html";
 	}
@@ -42,23 +35,16 @@ public class ProductController {
 			@RequestParam Double price) {
 		Product product = new Product(name, product_category, image, description, price);
 		product.setId(id);
-
-		if (productDAO.updateProduct1(product)) {
-			System.out.println("okay!!!");
-			return "redirect:/product_manager.html";
-		} else {
-			System.out.println("not Okay!!!");
-			return "redirect:/product_manager.html";
-		}
+		productDAO.updateProduct(product);
+		return "redirect:/product_manager.html";
 	}
 
 	@RequestMapping(value = "delete_product", method = RequestMethod.GET)
 	public String removeProductCategory(@RequestParam Integer id) {
-		if (productDAO.removeProduct(id)) {
-			return "redirect:/product_manager.html";
-		} else {
-			return "redirect:/product_manager.html";
-		}
+		Product product = new Product();
+		product.setId(id);
+		productDAO.removeProduct(product);
+		return "redirect:/product_manager.html";
 
 	}
 }

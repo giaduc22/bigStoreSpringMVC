@@ -50,7 +50,10 @@
 						<ul class="nav navbar-nav pull-right">
 							<li>
 								<a href="${contextPath}/cart">
-									<span class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="lang.cart" />
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+									 <spring:message code="lang.cart" />
+									<span class="badge badge-pill badge-danger">1</span>
+									
 								</a>
 							</li>
 							<li>

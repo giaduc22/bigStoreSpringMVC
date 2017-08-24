@@ -1,6 +1,6 @@
 <% 
 String view = request.getParameter("view");
-if(view.startsWith("login") || view.startsWith("cart")){
+if(view.startsWith("user")){
 	pageContext.forward("parent_layout.jsp");
 } else {
 	pageContext.forward("child_layout.jsp");

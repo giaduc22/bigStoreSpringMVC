@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,32 +28,21 @@ public class WelcomeController {
 	public String index(Model model, @RequestParam(required = false) Integer category,
 			@RequestParam(required = false) Integer page) {
 		model.addAttribute("productCategories", productCategoryDAO.getAllProductCategory());
-
-		if (null != category) {
-			productDAO.setPageNumber(page);
-			model.addAttribute("products", productDAO.getProductByCategory(category));
-			System.out.println(productDAO.getPage());
-			try {
-				List<Integer> pageCount = new ArrayList<Integer>();
-				for (int i = 0; i < productDAO.getPage(); i++) {
-					pageCount.add(i);
-				}
-				model.addAttribute("pagination", pageCount);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			productDAO.setPageNumber(page);
+		
+		if (category == null && page == null) {
 			model.addAttribute("products", productDAO.getAllProduct());
-			try {
-				List<Integer> pageCount = new ArrayList<Integer>();
-				for (int i = 0; i < productDAO.getPage(); i++) {
-					pageCount.add(i);
-				}
-				model.addAttribute("pagination", pageCount);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			model.addAttribute("pagination", productDAO.getPage());
+		} else if (category == null && page != null) {
+			productDAO.setPage(page);
+			model.addAttribute("products", productDAO.getAllProduct());		
+			model.addAttribute("pagination", productDAO.getPage());
+		} else if (category != null && page == null) {
+			model.addAttribute("products", productDAO.getProductByCategory(category));
+			model.addAttribute("pagination", productDAO.getPage());
+		} else {
+			productDAO.setPage(page);
+			model.addAttribute("products", productDAO.getProductByCategory(category));
+			model.addAttribute("pagination", productDAO.getPage());
 		}
 
 		return "products";

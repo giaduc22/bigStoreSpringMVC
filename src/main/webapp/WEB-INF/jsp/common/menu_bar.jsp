@@ -7,13 +7,11 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<%-- <c:set var="req" value="${pageContext.request}" />
-<c:set var="baseURL" value="${fn:replace(req.requestURL, req.requestURI, '')}" />
-<c:set var="params" value="${requestScope['javax.servlet.forward.query_string']}"/>
-<c:set var="requestPath" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-<c:set var="pageUrl" value="${ baseURL }${ requestPath }${ not empty params?'?'+=params:'' }"/> --%>
 
-
+<% 
+	String path = request.getServletPath();
+	String view = request.getParameter("view");
+%>
 
 <p class="lead">
 	<spring:message code="lang.product_category" />
@@ -29,6 +27,7 @@
 		</a>
 	</c:forEach>
 	
-	
+	<p><%= path %></p>
+	<p><%= view %></p>
 </div>
 
