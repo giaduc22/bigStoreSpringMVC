@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +26,13 @@ public class WelcomeController {
 	public String index(Model model, @RequestParam(required = false) Integer category,
 			@RequestParam(required = false) Integer page) {
 		model.addAttribute("productCategories", productCategoryDAO.getAllProductCategory());
-		
+
 		if (category == null && page == null) {
 			model.addAttribute("products", productDAO.getAllProduct());
 			model.addAttribute("pagination", productDAO.getPage());
 		} else if (category == null && page != null) {
 			productDAO.setPage(page);
-			model.addAttribute("products", productDAO.getAllProduct());		
+			model.addAttribute("products", productDAO.getAllProduct());
 			model.addAttribute("pagination", productDAO.getPage());
 		} else if (category != null && page == null) {
 			model.addAttribute("products", productDAO.getProductByCategory(category));
@@ -50,7 +48,7 @@ public class WelcomeController {
 
 	@RequestMapping(value = "item", method = RequestMethod.GET)
 	public String onItemClick(Model model, @RequestParam Integer id) {
-		List<Product> product = productDAO.getProductById(id);
+		Product product = productDAO.getProductById(id);
 		model.addAttribute("product", product);
 		return "item";
 	}

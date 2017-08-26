@@ -2,6 +2,7 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +16,14 @@ public class ProductController {
 	@Autowired
 	ProductDAO productDAO;
 
-	@RequestMapping(value = { "product_manager" }, method = RequestMethod.GET)
+	@RequestMapping(value = "product_manager", method = RequestMethod.GET)
 	public String productManager() {
 		return "admin/product_manager";
+	}
+
+	@RequestMapping(value = "add_product", method = RequestMethod.GET)
+	public String addProduct() {
+		return "admin/add_product";
 	}
 
 	@RequestMapping(value = "add_product", method = RequestMethod.POST)
@@ -29,8 +35,15 @@ public class ProductController {
 		return "redirect:/product_manager.html";
 	}
 
+	@RequestMapping(value = "edit_product", method = RequestMethod.GET)
+	public String updateProduct(Model model, @RequestParam Integer id) {
+		Product product = productDAO.getProductById(id);
+		model.addAttribute("product", product);
+		return "admin/edit_product";
+	}
+	
 	@RequestMapping(value = "update_product", method = RequestMethod.POST)
-	public String updateProductCategory(@RequestParam Integer id, @RequestParam String name,
+	public String updateProduct(@RequestParam Integer id, @RequestParam String name,
 			@RequestParam Integer product_category, @RequestParam String image, @RequestParam String description,
 			@RequestParam Double price) {
 		Product product = new Product(name, product_category, image, description, price);

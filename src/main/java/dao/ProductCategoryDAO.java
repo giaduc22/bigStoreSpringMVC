@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,20 @@ public class ProductCategoryDAO {
 			e.printStackTrace();
 		}
 		return productCategories;
+	}
+	
+	@Transactional
+	public ProductCategory getCategoryById(Integer id) {
+		ProductCategory productCategory = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Criteria criteria = session.createCriteria(ProductCategory.class);
+			criteria.add(Restrictions.eq("id", id));
+			productCategory = (ProductCategory) criteria.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return productCategory;
 	}
 
 	@Transactional

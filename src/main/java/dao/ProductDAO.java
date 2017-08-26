@@ -57,7 +57,7 @@ public class ProductDAO {
 			criteria.setMaxResults(pageSize);
 			products = criteria.list();
 
-			// LAST	PAGE CALCULATOR
+			// LAST PAGE CALCULATOR
 			criteria.setProjection(Projections.rowCount());
 			countResults = (Long) criteria.uniqueResult();
 			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
@@ -78,8 +78,8 @@ public class ProductDAO {
 			criteria.setFirstResult(page * pageSize);
 			criteria.setMaxResults(pageSize);
 			products = criteria.list();
-			
-			// LAST	PAGE CALCULATOR
+
+			// LAST PAGE CALCULATOR
 			criteria.setProjection(Projections.rowCount());
 			countResults = (Long) criteria.uniqueResult();
 			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
@@ -89,15 +89,14 @@ public class ProductDAO {
 		return products;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<Product> getProductById(Integer id) {
-		List<Product> product = null;
+	public Product getProductById(Integer id) {
+		Product product = null;
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			Criteria criteria = session.createCriteria(Product.class);
 			criteria.add(Restrictions.eq("id", id));
-			product = criteria.list();
+			product = (Product) criteria.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,7 +126,6 @@ public class ProductDAO {
 			return false;
 		}
 	}
-
 
 	@Transactional
 	public Boolean removeProduct(Product product) {

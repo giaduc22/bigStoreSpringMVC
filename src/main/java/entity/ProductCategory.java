@@ -3,6 +3,9 @@ package entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name="product_category")
@@ -11,8 +14,9 @@ public class ProductCategory {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String name;
-	
+	@NotBlank
+	@Size(min=5, max=10)
+	private String name;	
 	
 	
 	public ProductCategory() {
