@@ -17,7 +17,16 @@ public class ProductController {
 	ProductDAO productDAO;
 
 	@RequestMapping(value = "product_manager", method = RequestMethod.GET)
-	public String productManager() {
+	public String productManager(Model model, @RequestParam(required = false) Integer page) {
+		if (page != null) {
+			productDAO.setPage(page);
+			model.addAttribute("pagination", productDAO.getLastPage());
+			model.addAttribute("products", productDAO.getAllProduct());
+		} else {
+			model.addAttribute("pagination", productDAO.getLastPage());
+			model.addAttribute("products", productDAO.getAllProduct());
+		}
+				
 		return "admin/product_manager";
 	}
 

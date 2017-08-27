@@ -25,22 +25,21 @@ public class WelcomeController {
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(Model model, @RequestParam(required = false) Integer category,
 			@RequestParam(required = false) Integer page) {
-		model.addAttribute("productCategories", productCategoryDAO.getAllProductCategory());
-
+		
 		if (category == null && page == null) {
 			model.addAttribute("products", productDAO.getAllProduct());
-			model.addAttribute("pagination", productDAO.getPage());
+			model.addAttribute("pagination", productDAO.getLastPage());
 		} else if (category == null && page != null) {
 			productDAO.setPage(page);
 			model.addAttribute("products", productDAO.getAllProduct());
-			model.addAttribute("pagination", productDAO.getPage());
+			model.addAttribute("pagination", productDAO.getLastPage());
 		} else if (category != null && page == null) {
 			model.addAttribute("products", productDAO.getProductByCategory(category));
-			model.addAttribute("pagination", productDAO.getPage());
+			model.addAttribute("pagination", productDAO.getLastPage());
 		} else {
 			productDAO.setPage(page);
 			model.addAttribute("products", productDAO.getProductByCategory(category));
-			model.addAttribute("pagination", productDAO.getPage());
+			model.addAttribute("pagination", productDAO.getLastPage());
 		}
 
 		return "products";

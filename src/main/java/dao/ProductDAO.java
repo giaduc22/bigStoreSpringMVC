@@ -19,31 +19,17 @@ public class ProductDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private Integer pageSize = 10;
-	private Integer page = 0;
+	private int pageSize = 10;
+	private int page = 0;
 	private Long countResults;
 	private int lastPageNumber;
 
 	public void setPage(Integer page) {
-		this.page = page;
+		this.page = page - 1;
 	}
 
-	public int getPage() {
+	public int getLastPage() {
 		return lastPageNumber;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public List<Product> getProducts() {
-		List<Product> products = null;
-		Session session = this.sessionFactory.getCurrentSession();
-		try {
-			Criteria criteria = session.createCriteria(Product.class);
-			products = criteria.list();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return products;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -58,9 +44,11 @@ public class ProductDAO {
 			products = criteria.list();
 
 			// LAST PAGE CALCULATOR
-			criteria.setProjection(Projections.rowCount());
-			countResults = (Long) criteria.uniqueResult();
-			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+			Criteria criteria2 = session.createCriteria(Product.class);
+			countResults = (Long) criteria2.setProjection(Projections.rowCount()).uniqueResult();
+			lastPageNumber = (int) (Math.ceil(countResults / pageSize));			
+			System.out.println("Product countResults: "  + countResults);			
+			System.out.println("Product lastPageNumber: " + lastPageNumber);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,9 +68,12 @@ public class ProductDAO {
 			products = criteria.list();
 
 			// LAST PAGE CALCULATOR
-			criteria.setProjection(Projections.rowCount());
-			countResults = (Long) criteria.uniqueResult();
+			Criteria criteria2 = session.createCriteria(Product.class);
+			criteria2.add(Restrictions.eq("product_category", product_category));
+			countResults = (Long) criteria2.setProjection(Projections.rowCount()).uniqueResult();
 			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
+			System.out.println("Product by Category countResults: "  + countResults);			
+			System.out.println("Product by Category lastPageNumber: " + lastPageNumber);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
