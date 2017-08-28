@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -22,11 +24,13 @@ public class Product {
 	private String name;
 	private Integer product_category;
 	@NotBlank
+	@Size(max=255)
 	private String image;	
 	@NotBlank
-	@Size(min=10)
+	@Size(min=10, max=100)
 	private String description;
-	@NotBlank
+	@NotNull
+	@DecimalMin(value = "0")
 	private Double price;
 	
 

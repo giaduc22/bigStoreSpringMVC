@@ -50,11 +50,17 @@ public class ProductCategoryController {
 	}
 
 	@PostMapping("update_product_category")
-	public String updateProductCategory(@RequestParam int id, @RequestParam String name) {
-		ProductCategory productCategory = new ProductCategory(name);
-		productCategory.setId(id);
-		productCategoryDAO.updateProductCategory(productCategory);
-		return "redirect:/product_category_manager.html";
+	public String updateProductCategory(@Validated @ModelAttribute("productCategory") ProductCategory productCategory,
+			BindingResult bindingResult) {
+		// ProductCategory productCategory = new ProductCategory(name);
+		// productCategory.setId(id);
+		if (bindingResult.hasErrors()) {
+			return "admin/edit_category";
+		} else {
+			productCategoryDAO.updateProductCategory(productCategory);
+			return "redirect:/product_category_manager.html";
+		}
+
 	}
 
 	@GetMapping("delete_product_category")

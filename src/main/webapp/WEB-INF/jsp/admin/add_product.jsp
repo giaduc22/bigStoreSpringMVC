@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+	 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 		<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -15,37 +16,49 @@ pageEncoding="UTF-8"%>
 				</div>
 				<div>
 					<div class="card card-body">
-						<form action="${contextPath}/add_product" method="post">
+						<form:form modelAttribute="product" action="${contextPath}/add_product" method="post">
 							<div class="form-group">
 								<label class="form-control-label" for="productName"><spring:message code="lang.product_name" /></label>
-								<input type="text" name="name" class="form-control" id="productName" placeholder="Product name" required>
+								<input type="text" name="name" class="form-control" id="productName" placeholder="Product name">
+								<small class="text-muted text-danger">
+							    	<form:errors path="name" />
+							    </small>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="productCategory"><spring:message code="lang.product_category" /></label>
 								<select name="product_category" class="form-control" id="productCategory">
-					<c:forEach var="p" items="${productCategories}">
-						<option value="${p.id}">${p.name}</option>
-					</c:forEach>
-				</select>
+									<c:forEach var="p" items="${productCategories}">
+										<option value="${p.id}">${p.name}</option>
+									</c:forEach>
+								</select>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="imageURL"><spring:message code="lang.product_image" /></label>
-								<input type="url" name="image" class="form-control" id="imageURL" placeholder="Image URL" required>
+								<input type="url" name="image" class="form-control" id="imageURL" placeholder="Image URL">
+								<small class="text-muted text-danger">
+							    	<form:errors path="image" />
+							    </small>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="description"><spring:message code="lang.product_description" /></label>
-								<textarea name="description" class="form-control" id="description" rows="3" placeholder="Description" required></textarea>
+								<textarea name="description" class="form-control" id="description" rows="3" placeholder="Description"></textarea>
+								<small class="text-muted text-danger">
+							    	<form:errors path="description" />
+							    </small>
 							</div>
 							<div class="form-group">
 								<label class="form-control-label" for="price"><spring:message code="lang.product_price" /></label> <input type="number"
-								 name="price" class="form-control" id="price" placeholder="Price" required>
+								 name="price" class="form-control" id="price" placeholder="Price">
+								 <small class="text-muted text-danger">
+							    	<form:errors path="price" />
+							    </small>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success btn-block">
 					<span class="glyphicon glyphicon-plus"></span> <spring:message code="lang.add" />
 				</button>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>

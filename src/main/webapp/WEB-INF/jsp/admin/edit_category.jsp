@@ -15,19 +15,24 @@ pageEncoding="UTF-8"%>
         </a>
     </div>
     <div>
-        <form action="${contextPath}/update_product_category" method="post">
+        <form:form modelAttribute="productCategory" action="${contextPath}/update_product_category" method="post">
             <div class="form-group">
                 <label class="form-control-label" for="productCategoryId"><spring:message code="lang.product_category_id" /></label>
                 <input type="text" name="id" readonly class="form-control" id="productCategoryId" value='<c:out value="${productCategory.id}" />'>
+                <small class="text-muted text-danger">
+			    	<form:errors path="id" />
+			    </small>
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="productCategoryName"><spring:message code="lang.product_category_name" /></label>
-                <input type="text" name="name" class="form-control" id="productCategoryName" value='<c:out value="${productCategory.name}" />' required>
+                <input type="text" name="name" class="form-control" id="productCategoryName" value='<c:out value="${productCategory.name}" />'>
+                <small class="text-muted text-danger">
+			    	<form:errors path="name" />
+			    </small>
             </div>
-
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> <spring:message code="lang.update" /></button>
             </div>
-        </form>
+        </form:form>
     </div>
 </div>

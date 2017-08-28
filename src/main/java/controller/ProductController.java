@@ -3,7 +3,10 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,7 +29,7 @@ public class ProductController {
 			model.addAttribute("pagination", productDAO.getLastPage());
 			model.addAttribute("products", productDAO.getAllProduct());
 		}
-				
+
 		return "admin/product_manager";
 	}
 
@@ -35,14 +38,19 @@ public class ProductController {
 		return "admin/add_product";
 	}
 
-	
 	@PostMapping("add_product")
-	public String addProduct(@RequestParam String name, @RequestParam Integer product_category,
-			@RequestParam String image, @RequestParam String description, @RequestParam Double price) {
-		Product product = new Product(name, product_category, image, description, price);
-		productDAO.addProduct(product);
+	public String addProduct(@Validated @ModelAttribute("product") Product product, BindingResult bindingResult) {
+		// Product product = new Product(name, product_category, image,
+		// description, price);
+		// productDAO.addProduct(product);
 
-		return "redirect:/product_manager.html";
+		if (bindingResult.hasErrors()) {
+			return "admin/add_product";
+		} else {
+			productDAO.addProduct(product);
+			return "redirect:/product_manager.html";
+		}
+
 	}
 
 	@GetMapping("edit_product")
@@ -51,15 +59,19 @@ public class ProductController {
 		model.addAttribute("product", product);
 		return "admin/edit_product";
 	}
-	
+
 	@PostMapping("update_product")
-	public String updateProduct(@RequestParam Integer id, @RequestParam String name,
-			@RequestParam Integer product_category, @RequestParam String image, @RequestParam String description,
-			@RequestParam Double price) {
-		Product product = new Product(name, product_category, image, description, price);
-		product.setId(id);
-		productDAO.updateProduct(product);
-		return "redirect:/product_manager.html";
+	public String updateProduct(@Validated @ModelAttribute("product") Product product, BindingResult bindingResult) {
+		// Product product = new Product(name, product_category, image,
+		// description, price);
+		// product.setId(id);
+		if (bindingResult.hasErrors()) {
+			return "admin/edit_product";
+		} else {
+			productDAO.updateProduct(product);
+			return "redirect:/product_manager.html";
+		}
+
 	}
 
 	@GetMapping("delete_product")
