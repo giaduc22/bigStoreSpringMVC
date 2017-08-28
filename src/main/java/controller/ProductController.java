@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.ProductCategoryDAO;
 import dao.ProductDAO;
 import entity.Product;
 
@@ -18,18 +19,12 @@ public class ProductController {
 
 	@Autowired
 	ProductDAO productDAO;
+	@Autowired
+	ProductCategoryDAO ProductCategoryDAO;
 
 	@GetMapping("product_manager")
-	public String productManager(Model model, @RequestParam(required = false) Integer page) {
-		if (page != null) {
-			productDAO.setPage(page);
-			model.addAttribute("pagination", productDAO.getLastPage());
-			model.addAttribute("products", productDAO.getAllProduct());
-		} else {
-			model.addAttribute("pagination", productDAO.getLastPage());
-			model.addAttribute("products", productDAO.getAllProduct());
-		}
-
+	public String productManager(Model model) {
+		model.addAttribute("products", productDAO.getProducts());
 		return "admin/product_manager";
 	}
 

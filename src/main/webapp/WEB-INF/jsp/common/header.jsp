@@ -41,13 +41,13 @@
 									<spring:message code="lang.product_category_manager" />
 								</a>
 							</li>
-							<li>
+							<%-- <li>
 								<a href="${contextPath}/user_manager">
 									<spring:message code="lang.user_manager" />
 								</a>
-							</li>
+							</li> --%>
 						</ul>						
-						<ul class="nav navbar-nav pull-right">
+						<%-- <ul class="nav navbar-nav pull-right">
 							<li>
 								<a href="${contextPath}/cart">
 									<span class="glyphicon glyphicon-shopping-cart"></span>
@@ -62,7 +62,7 @@
 									<spring:message code="lang.login" />
 								</a>
 							</li>
-						</ul>
+						</ul> --%>
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>

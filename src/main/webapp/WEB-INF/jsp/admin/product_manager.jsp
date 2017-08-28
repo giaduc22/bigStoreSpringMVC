@@ -60,13 +60,4 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div class="row">
-					<div class="text-center">
-						<ul class="pagination">
-							<c:forEach var="page" end="${pagination}" begin="0">
-								<li><a href="${contextPath}/product_manager?page=${page + 1}">${page + 1}</a></li>
-							</c:forEach>
-						</ul>
-					</div>
-				</div>
 			</div>

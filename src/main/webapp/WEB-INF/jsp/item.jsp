@@ -1,4 +1,4 @@
-${contextPath}/<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 		<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>

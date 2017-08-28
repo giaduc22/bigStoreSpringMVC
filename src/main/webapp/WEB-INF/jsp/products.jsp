@@ -31,7 +31,6 @@
 							<a href="item?id=${p.id}">${p.name}</a>
 						</h4>
 						<p>${p.description}</p>
-						<p>${p.id }</p>
 					</div>
 					<div class="ratings">
 						<p>

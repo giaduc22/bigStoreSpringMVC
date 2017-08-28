@@ -23,11 +23,8 @@
 	<c:forEach var="p" items="${productCategories}" varStatus="i">
 		<a href="${contextPath}/index?category=${p.id}" class="list-group-item">
 			${p.name}
-			<span class="badge pull-right">${p.id}</span>
+			<%-- <span class="badge pull-right">${p.id}</span> --%>
 		</a>
 	</c:forEach>
-	
-	<p><%= path %></p>
-	<p><%= view %></p>
 </div>
 
