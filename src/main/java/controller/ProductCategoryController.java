@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.ProductCategoryDAO;
@@ -17,17 +17,18 @@ public class ProductCategoryController {
 	@Autowired
 	ProductCategoryDAO productCategoryDAO;
 
-	@RequestMapping(value = "product_category_manager", method = RequestMethod.GET)
+	
+	@GetMapping("product_category_manager")
 	public String productCategoryManager() {
 		return "admin/product_category_manager";
 	}
 
-	@RequestMapping(value = "add_category", method = RequestMethod.GET)
+	@GetMapping("add_category")
 	public String addCategory() {
 		return "admin/add_category";
 	}
 	
-	@RequestMapping(value = "add_product_category", method = RequestMethod.POST)
+	@PostMapping("add_product_category")
 	public String addProductCategory(@RequestParam String name, @Validated ProductCategory category,
 			BindingResult bindingResult) {
 		// ProductCategory productCategory = new ProductCategory(name);
@@ -42,14 +43,14 @@ public class ProductCategoryController {
 	}
 
 	
-	@RequestMapping(value = "edit_category", method = RequestMethod.GET)
+	@GetMapping("edit_category")
 	public String update_Category(Model model, @RequestParam Integer id) {
 		ProductCategory productCategory = productCategoryDAO.getCategoryById(id);
 		model.addAttribute("productCategory", productCategory);
 		return "admin/edit_category";
 	}
 	
-	@RequestMapping(value = "update_product_category", method = RequestMethod.POST)
+	@PostMapping("update_product_category")
 	public String updateProductCategory(@RequestParam int id, @RequestParam String name) {
 		ProductCategory productCategory = new ProductCategory(name);
 		productCategory.setId(id);
@@ -57,7 +58,7 @@ public class ProductCategoryController {
 		return "redirect:/product_category_manager.html";
 	}
 
-	@RequestMapping(value = "delete_product_category", method = RequestMethod.GET)
+	@GetMapping("delete_product_category")
 	public String removeProductCategory(@RequestParam int id) {
 		ProductCategory productCategory = new ProductCategory();
 		productCategory.setId(id);
