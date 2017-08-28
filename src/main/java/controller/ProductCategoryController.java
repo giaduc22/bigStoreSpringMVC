@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,39 +18,37 @@ public class ProductCategoryController {
 	@Autowired
 	ProductCategoryDAO productCategoryDAO;
 
-	
 	@GetMapping("product_category_manager")
 	public String productCategoryManager() {
 		return "admin/product_category_manager";
 	}
 
-	@GetMapping("add_category")
+	@GetMapping("add_product_category")
 	public String addCategory() {
 		return "admin/add_category";
 	}
-	
+
 	@PostMapping("add_product_category")
-	public String addProductCategory(@RequestParam String name, @Validated ProductCategory category,
+	public String addProductCategory(@Validated @ModelAttribute("productCategory") ProductCategory productCategory,
 			BindingResult bindingResult) {
 		// ProductCategory productCategory = new ProductCategory(name);
 		// productCategoryDAO.addProductCategory(productCategory);
 		if (bindingResult.hasErrors()) {
-			System.out.println("Error!");
+			return "admin/add_category";
 		} else {
-			System.out.println("Okay!!");
+			productCategoryDAO.addProductCategory(productCategory);
+			return "redirect:/product_category_manager.html";
 		}
 
-		return "redirect:/product_category_manager.html";
 	}
 
-	
 	@GetMapping("edit_category")
 	public String update_Category(Model model, @RequestParam Integer id) {
 		ProductCategory productCategory = productCategoryDAO.getCategoryById(id);
 		model.addAttribute("productCategory", productCategory);
 		return "admin/edit_category";
 	}
-	
+
 	@PostMapping("update_product_category")
 	public String updateProductCategory(@RequestParam int id, @RequestParam String name) {
 		ProductCategory productCategory = new ProductCategory(name);

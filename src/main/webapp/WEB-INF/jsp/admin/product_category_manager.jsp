@@ -10,7 +10,7 @@
 		<spring:message code="lang.product_category_manager" />
 	</h2>
 	<div class="col-md-6">
-		<a class="btn btn-success" href="${contextPath}/add_category"> 
+		<a class="btn btn-success" href="${contextPath}/add_product_category"> 
 			<span class="glyphicon glyphicon-plus"></span> <spring:message code="lang.add" />
 		</a>
 	</div>

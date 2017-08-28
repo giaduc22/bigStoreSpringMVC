@@ -15,7 +15,7 @@ public class ProductCategory {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@NotBlank
-	@Size(min=5, max=10)
+	@Size(min=5, max=25)
 	private String name;	
 	
 	

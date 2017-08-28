@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "product")
@@ -14,10 +17,16 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@NotBlank
+	@Size(min=5, max=25)
 	private String name;
 	private Integer product_category;
+	@NotBlank
 	private String image;	
+	@NotBlank
+	@Size(min=10)
 	private String description;
+	@NotBlank
 	private Double price;
 	
 

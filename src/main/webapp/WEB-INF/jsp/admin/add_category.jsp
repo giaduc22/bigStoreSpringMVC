@@ -15,11 +15,13 @@ pageEncoding="UTF-8"%>
         </a>
     </div>
     <div>
-        <form:form action="${contextPath}/add_product_category" method="post">
+        <form:form modelAttribute="productCategory" action="${contextPath}/add_product_category" method="post">
             <div class="form-group">
-                <label class="form-control-label" for="productCategoryName"><spring:message code="lang.product_category_name" /></label>
-                <form:errors name="name" class="form-control-label" />
-                <input type="text" name="name" class="form-control" id="productCategoryName" placeholder="Product name" required>
+            	<label class="form-control-label" for="productCategoryName"><spring:message code="lang.product_category_name" /></label>            
+	            <input type="text" name="name" class="form-control" id="productCategoryName" placeholder="Product category name">
+                <small class="text-muted text-danger">
+			    	<form:errors path="name" />
+			    </small>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> <spring:message code="lang.add" /></button>
