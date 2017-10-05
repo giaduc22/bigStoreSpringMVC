@@ -7,25 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.ProductCategoryDAO;
+import dao.CategoryDAO;
 import dao.ProductDAO;
-import dao.UserDAO;
 import entity.Product;
 
 @Controller
 @RequestMapping("/")
 public class WelcomeController {
 	@Autowired
-	ProductCategoryDAO productCategoryDAO;
+	CategoryDAO productCategoryDAO;
 	@Autowired
 	ProductDAO productDAO;
-	@Autowired
-	UserDAO userDAO;
 
 	@GetMapping("index")
 	public String index(Model model, @RequestParam(required = false) Integer category,
 			@RequestParam(required = false) Integer page) {
-		
+
 		if (category == null && page == null) {
 			model.addAttribute("products", productDAO.getAllProduct());
 			model.addAttribute("pagination", productDAO.getLastPage());

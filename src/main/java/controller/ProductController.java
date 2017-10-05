@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.ProductCategoryDAO;
+import dao.CategoryDAO;
 import dao.ProductDAO;
 import entity.Product;
 
@@ -20,7 +20,7 @@ public class ProductController {
 	@Autowired
 	ProductDAO productDAO;
 	@Autowired
-	ProductCategoryDAO ProductCategoryDAO;
+	CategoryDAO ProductCategoryDAO;
 
 	@GetMapping("product_manager")
 	public String productManager(Model model) {

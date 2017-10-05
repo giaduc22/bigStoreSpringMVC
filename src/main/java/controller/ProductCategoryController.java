@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.ProductCategoryDAO;
-import entity.ProductCategory;
+import dao.CategoryDAO;
+import entity.Category;
 
 @Controller
 public class ProductCategoryController {
 	@Autowired
-	ProductCategoryDAO productCategoryDAO;
+	CategoryDAO productCategoryDAO;
 
 	@GetMapping("product_category_manager")
 	public String productCategoryManager() {
@@ -29,7 +29,7 @@ public class ProductCategoryController {
 	}
 
 	@PostMapping("add_product_category")
-	public String addProductCategory(@Validated @ModelAttribute("productCategory") ProductCategory productCategory,
+	public String addProductCategory(@Validated @ModelAttribute("productCategory") Category productCategory,
 			BindingResult bindingResult) {
 		// ProductCategory productCategory = new ProductCategory(name);
 		// productCategoryDAO.addProductCategory(productCategory);
@@ -44,13 +44,13 @@ public class ProductCategoryController {
 
 	@GetMapping("edit_category")
 	public String update_Category(Model model, @RequestParam Integer id) {
-		ProductCategory productCategory = productCategoryDAO.getCategoryById(id);
+		Category productCategory = productCategoryDAO.getCategoryById(id);
 		model.addAttribute("productCategory", productCategory);
 		return "admin/edit_category";
 	}
 
 	@PostMapping("update_product_category")
-	public String updateProductCategory(@Validated @ModelAttribute("productCategory") ProductCategory productCategory,
+	public String updateProductCategory(@Validated @ModelAttribute("productCategory") Category productCategory,
 			BindingResult bindingResult) {
 		// ProductCategory productCategory = new ProductCategory(name);
 		// productCategory.setId(id);
@@ -65,7 +65,7 @@ public class ProductCategoryController {
 
 	@GetMapping("delete_product_category")
 	public String removeProductCategory(@RequestParam int id) {
-		ProductCategory productCategory = new ProductCategory();
+		Category productCategory = new Category();
 		productCategory.setId(id);
 		productCategoryDAO.removeProductCategory(productCategory);
 		return "redirect:/product_category_manager.html";

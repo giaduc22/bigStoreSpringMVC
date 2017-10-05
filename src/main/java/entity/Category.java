@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name="product_category")
-public class ProductCategory {
+public class Category {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,11 +19,11 @@ public class ProductCategory {
 	private String name;	
 	
 	
-	public ProductCategory() {
+	public Category() {
 		super();
 	}
 	
-	public ProductCategory(String name) {
+	public Category(String name) {
 		super();
 		this.name = name;
 	}

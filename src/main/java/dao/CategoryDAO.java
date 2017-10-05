@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import entity.ProductCategory;
+import entity.Category;
 
 
 @Service("productCategoryService")
 @Repository
-public class ProductCategoryDAO {
+public class CategoryDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -24,11 +24,11 @@ public class ProductCategoryDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<ProductCategory> getAllProductCategory() {
-		List<ProductCategory> productCategories = null;
+	public List<Category> getAllProductCategory() {
+		List<Category> productCategories = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			Criteria criteria = session.createCriteria(ProductCategory.class);
+			Criteria criteria = session.createCriteria(Category.class);
 			productCategories = criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,13 +37,13 @@ public class ProductCategoryDAO {
 	}
 	
 	@Transactional
-	public ProductCategory getCategoryById(Integer id) {
-		ProductCategory productCategory = null;
+	public Category getCategoryById(Integer id) {
+		Category productCategory = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			Criteria criteria = session.createCriteria(ProductCategory.class);
+			Criteria criteria = session.createCriteria(Category.class);
 			criteria.add(Restrictions.eq("id", id));
-			productCategory = (ProductCategory) criteria.uniqueResult();
+			productCategory = (Category) criteria.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class ProductCategoryDAO {
 	}
 
 	@Transactional
-	public Boolean addProductCategory(ProductCategory productCategory) {
+	public Boolean addProductCategory(Category productCategory) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			session.save(productCategory);
@@ -63,7 +63,7 @@ public class ProductCategoryDAO {
 	}
 
 	@Transactional
-	public Boolean updateProductCategory(ProductCategory productCategory) {
+	public Boolean updateProductCategory(Category productCategory) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			session.saveOrUpdate(productCategory);
@@ -75,7 +75,7 @@ public class ProductCategoryDAO {
 	}
 
 	@Transactional
-	public Boolean removeProductCategory(ProductCategory productCategory) {
+	public Boolean removeProductCategory(Category productCategory) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
 			session.delete(productCategory);
