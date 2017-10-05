@@ -10,7 +10,7 @@
 		<spring:message code="lang.product_category_manager" />
 	</h2>
 	<div class="col-md-6">
-		<a class="btn btn-success" href="${contextPath}/add_product_category"> 
+		<a class="btn btn-success" href="${contextPath}/add_category"> 
 			<span class="glyphicon glyphicon-plus"></span> <spring:message code="lang.add" />
 		</a>
 	</div>
@@ -45,7 +45,7 @@
 					</a>
 					</td>
 					<td>
-						<a href="${contextPath}/delete_product_category?id=${p.id}" class="btn btn-danger delete"> 
+						<a href="${contextPath}/delete_category?id=${p.id}" class="btn btn-danger delete"> 
 							<span class="glyphicon glyphicon-remove"></span> <spring:message code="lang.remove" />
 						</a>
 					</td>

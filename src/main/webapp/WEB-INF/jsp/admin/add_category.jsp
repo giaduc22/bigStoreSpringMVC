@@ -10,12 +10,12 @@ pageEncoding="UTF-8"%>
         <spring:message code="lang.product_category_manager" />
     </h2>
     <div>
-        <a class="btn btn-success" href="${contextPath}/product_category_manager"> 
+        <a class="btn btn-success" href="${contextPath}/category_manager"> 
             <span class="glyphicon glyphicon-menu-left"></span> Back
         </a>
     </div>
     <div>
-        <form:form modelAttribute="productCategory" action="${contextPath}/add_product_category" method="post">
+        <form:form modelAttribute="productCategory" action="${contextPath}/add_category" method="post">
             <div class="form-group">
             	<label class="form-control-label" for="productCategoryName"><spring:message code="lang.product_category_name" /></label>            
 	            <input type="text" name="name" class="form-control" id="productCategoryName" placeholder="Product category name">

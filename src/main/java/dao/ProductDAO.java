@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import entity.Product;
 
 @Repository
+@Transactional
 public class ProductDAO {
 
 	@Autowired
@@ -33,7 +34,6 @@ public class ProductDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public List<Product> getProducts() {
 		List<Product> products = null;
 		Session session = this.sessionFactory.getCurrentSession();
@@ -47,7 +47,6 @@ public class ProductDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public List<Product> getAllProduct() {
 		List<Product> products = null;
 		Session session = this.sessionFactory.getCurrentSession();
@@ -60,9 +59,7 @@ public class ProductDAO {
 			// LAST PAGE CALCULATOR
 			Criteria criteria2 = session.createCriteria(Product.class);
 			countResults = (Long) criteria2.setProjection(Projections.rowCount()).uniqueResult();
-			lastPageNumber = (int) (Math.ceil(countResults / pageSize));			
-			System.out.println("Product countResults: "  + countResults);			
-			System.out.println("Product lastPageNumber: " + lastPageNumber);			
+			lastPageNumber = (int) (Math.ceil(countResults / pageSize));				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +67,6 @@ public class ProductDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public List<Product> getProductByCategory(Integer product_category) {
 		List<Product> products = null;
 		Session session = this.sessionFactory.getCurrentSession();
@@ -86,15 +82,12 @@ public class ProductDAO {
 			criteria2.add(Restrictions.eq("product_category", product_category));
 			countResults = (Long) criteria2.setProjection(Projections.rowCount()).uniqueResult();
 			lastPageNumber = (int) (Math.ceil(countResults / pageSize));
-			System.out.println("Product by Category countResults: "  + countResults);			
-			System.out.println("Product by Category lastPageNumber: " + lastPageNumber);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return products;
 	}
 
-	@Transactional
 	public Product getProductById(Integer id) {
 		Product product = null;
 		Session session = this.sessionFactory.getCurrentSession();
@@ -108,7 +101,6 @@ public class ProductDAO {
 		return product;
 	}
 
-	@Transactional
 	public Boolean addProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
@@ -120,7 +112,6 @@ public class ProductDAO {
 		}
 	}
 
-	@Transactional
 	public Boolean updateProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {
@@ -132,7 +123,6 @@ public class ProductDAO {
 		}
 	}
 
-	@Transactional
 	public Boolean removeProduct(Product product) {
 		Session session = this.sessionFactory.getCurrentSession();
 		try {

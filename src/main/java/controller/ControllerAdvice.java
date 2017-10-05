@@ -14,14 +14,14 @@ import entity.Category;
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice {
 	@Autowired
-	CategoryDAO productCategoryDAO;
+	CategoryDAO categoryDAO;
 	@Autowired
 	ProductDAO productDAO;
 
 	@ModelAttribute
 	public void getAllProductCategory(Model model) {
-		List<Category> productCategories = productCategoryDAO.getAllProductCategory();
-		model.addAttribute("productCategories", productCategories);
+		List<Category> categories = categoryDAO.getAllCategory();
+		model.addAttribute("productCategories", categories);
 	}
 
 	@ModelAttribute

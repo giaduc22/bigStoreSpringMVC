@@ -37,7 +37,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="${contextPath}/product_category_manager">
+								<a href="${contextPath}/category_manager">
 									<spring:message code="lang.product_category_manager" />
 								</a>
 							</li>
