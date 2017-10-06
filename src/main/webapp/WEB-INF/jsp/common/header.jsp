@@ -22,16 +22,6 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li>
-								<a href="#">
-									<spring:message code="lang.about" />
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<spring:message code="lang.contact" />
-								</a>
-							</li>
-							<li>
 								<a href="${contextPath}/product_manager">
 									<spring:message code="lang.product_manager" />
 								</a>
@@ -41,28 +31,7 @@
 									<spring:message code="lang.product_category_manager" />
 								</a>
 							</li>
-							<%-- <li>
-								<a href="${contextPath}/user_manager">
-									<spring:message code="lang.user_manager" />
-								</a>
-							</li> --%>
-						</ul>						
-						<%-- <ul class="nav navbar-nav pull-right">
-							<li>
-								<a href="${contextPath}/cart">
-									<span class="glyphicon glyphicon-shopping-cart"></span>
-									 <spring:message code="lang.cart" />
-									<span class="badge badge-pill badge-danger">1</span>
-									
-								</a>
-							</li>
-							<li>
-								<a href="${contextPath}/login">
-									<span class="glyphicon glyphicon-user"></span>
-									<spring:message code="lang.login" />
-								</a>
-							</li>
-						</ul> --%>
+						</ul>	
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>

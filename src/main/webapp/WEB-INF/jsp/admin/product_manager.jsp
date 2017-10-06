@@ -47,7 +47,7 @@
 							<tr>
 								<td>${p.id}</td>
 								<td>${p.name}</td>
-								<td><img src="${p.image}" alt="${p.id}" class="img-responsive img-fluid"></td>
+								<td><img src="${p.image}" alt="${p.id}" class="img-responsive img-fluid" style="max-width: 50%;"></td>
 								<td>${p.description}</td>
 								<td>${p.price}</td>
 								<td><a href="${contextPath}/edit_product?id=${p.id}" class="btn btn-info"> <span
